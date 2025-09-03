@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QuestFit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Press Start 2P', monospace;
+      color: white;
+      text-align: center;
+      background: #000;
+    }
+    #xp-bar {
+      width: 80%;
+      height: 20px;
+      background: grey;
+      margin: 20px auto;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    #xp-fill {
+      height: 100%;
+      width: 50%;
+      background: limegreen;
+      transition: width 0.5s;
+    }
+    #log {
+      max-height: 200px;
+      overflow-y: auto;
+      background: rgba(0,0,0,0.5);
+      margin: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: left;
+    }
+    #clear-log {
+      background: crimson;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+      font-family: inherit;
+    }
+  </style>
+</head>
+<body>
+  <h1>⚔️ QuestFit ⚔️</h1>
+  <p id="rank">Rank: Novice Adventurer</p>
+  <p id="streak">🔥 Streak: 0 days</p>
+  <div id="xp-bar"><div id="xp-fill"></div></div>
+  <div id="log"></div>
+  <button id="clear-log">Clear Adventure Log</button>
+  <script>
+    let streak = 0;
+    let xp = 0;
+    let log = [];
+    function addLog(entry) {
+      log.unshift(entry);
+      document.getElementById('log').innerHTML = log.join('<br>');
+    }
+    document.getElementById("clear-log").onclick = function() {
+      if(confirm("Clear your Adventure Log? This cannot be undone.")) {
+        log = [];
+        document.getElementById('log').innerHTML = '';
+      }
+    };
+    // Example entries
+    addLog("⭐ Level Up! New Rank: Novice Adventurer");
+    addLog("✅ Completed Day 1 (+50 XP)");
+  </script>
+</body>
+</html>
